@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@font-face {
+  font-family: "MyFont";
+  src: url("./assets//CalSans-SemiBold.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+*  {
+  font-family: "MyFont";
+}
+
