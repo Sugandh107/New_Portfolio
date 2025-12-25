@@ -196,14 +196,14 @@ const About = () => {
                 href="mailto:sugandh.revankar@gmail.com"
                 className="text-purple-400 hover:text-purple-300 underline underline-offset-4"
               >
-                sugandh.revankar@gmail.com
+                sugandhrevankar@gmail.com
               </a>
             </p>
 
             <div className="flex gap-6">
-              <Github className="w-6 h-6 cursor-pointer hover:text-purple-400 transition-all hover:-translate-y-1" />
-              <Linkedin className="w-6 h-6 cursor-pointer hover:text-purple-400 transition-all hover:-translate-y-1" />
-              <Mail className="w-6 h-6 cursor-pointer hover:text-purple-400 transition-all hover:-translate-y-1" />
+              <a href="https://github.com/sugandhrevankar" target="_blank" rel="noopener noreferrer"><Github className="w-6 h-6 cursor-pointer hover:text-purple-400 transition-all hover:-translate-y-1" /></a>
+              <a href="https://linkedin.com/in/sugandhrevankar" target="_blank" rel="noopener noreferrer"><Linkedin className="w-6 h-6 cursor-pointer hover:text-purple-400 transition-all hover:-translate-y-1" /></a>
+              <a href="mailto:sugandhrevankar@gmail.com"><Mail className="w-6 h-6 cursor-pointer hover:text-purple-400 transition-all hover:-translate-y-1" /></a>
             </div>
           </motion.div>
 

@@ -16,6 +16,7 @@ import {
 import { 
   FaLinux, FaWindows, FaApple, FaAws 
 } from "react-icons/fa";
+import Contact from '../components/Contact';
 
 // --- Configuration for Tech Stack ---
 const techStackIcons = [
@@ -35,9 +36,6 @@ const techStackIcons = [
   { name: "Postman", icon: SiPostman, color: "text-[#FF6C37]" },
   { name: "AWS", icon: FaAws, color: "text-[#FF9900]" },
   { name: "CorelDraw", icon: SiCoreldraw, color: "text-[#009038]" },
-  { name: "Linux", icon: FaLinux, color: "text-[#FCC624]" },
-  { name: "Windows", icon: FaWindows, color: "text-[#0078D6]" },
-  { name: "MacOS", icon: FaApple, color: "text-white" },
 ];
 
 // --- UPDATED TYPING COMPONENT (Natural Width) ---
@@ -126,7 +124,7 @@ const Home = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="mt-16 md:mt-24 space-y-32 px-6 md:px-12 lg:px-24"
+      className="mt-1 md:mt-5 space-y-32 px-6 md:px-12 lg:px-24"
     >
       
       {/* 1. HERO SECTION */}
@@ -206,6 +204,8 @@ const Home = () => {
           </Link>
         </div>
       </motion.section>
+
+      <Contact/>
 
     </motion.div>
   );

@@ -9,23 +9,16 @@ const Footer = () => {
             <div className="flex flex-col gap-3">
               <a href="#" className="hover:text-white">Home</a>
               <a href="#" className="hover:text-white">About</a>
-              <a href="#" className="hover:text-white">Dashboard</a>
+             
               <a href="#" className="hover:text-white">Projects</a>
             </div>
-            <div className="flex flex-col gap-3">
-              <a href="#" className="hover:text-white">Blog</a>
-              <a href="#" className="hover:text-white">Snippets</a>
-              <a href="#" className="hover:text-white">Uses</a>
-            </div>
-            <div className="flex flex-col gap-3">
-              <a href="#" className="hover:text-white">Guestbook</a>
-              <a href="#" className="hover:text-white">Endorsements</a>
-            </div>
+           
+            
           </div>
           
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-neutral-900 gap-4">
              <div className="text-gray-500 text-sm">
-                © 2025 Bona Brian Siagian — <span className="italic">Jakarta, Indonesia</span>
+                © 2025 Sugandh Revankar — <span className="italic">Karnataka, India</span>
              </div>
              <div className="flex gap-6 text-gray-400">
                 <Github size={20} className="hover:text-white cursor-pointer" />
