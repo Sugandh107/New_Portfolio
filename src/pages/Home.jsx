@@ -40,14 +40,14 @@ const techStackIcons = [
   { name: "MacOS", icon: FaApple, color: "text-white" },
 ];
 
-// --- FIXED TYPING COMPONENT ---
+// --- UPDATED TYPING COMPONENT (Natural Width) ---
 const TypewriterWord = ({ words }) => {
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);
   const [blink, setBlink] = useState(true);
 
-  // Blinking cursor logic (toggles opacity, doesn't add/remove DOM elements)
+  // Blinking cursor
   useEffect(() => {
     const timeout2 = setTimeout(() => setBlink((prev) => !prev), 500);
     return () => clearTimeout(timeout2);
@@ -75,13 +75,10 @@ const TypewriterWord = ({ words }) => {
   }, [subIndex, index, reverse, words]);
 
   return (
-    // min-w-[135px] ensures the container is wide enough for the longest word ("beautiful")
-    // This prevents the text "things with code" from jumping around.
-    <span className="inline-flex items-center justify-start min-w-[135px] text-purple-400 font-semibold align-bottom">
+    // Removed fixed width so it flows naturally
+    <span className="inline-flex items-center text-purple-400 font-semibold">
       <span>{words[index].substring(0, subIndex)}</span>
-      
-      {/* The Cursor: A fixed-width span that fades in/out */}
-      <span className={`ml-1 w-[3px] h-[1.2em] bg-purple-400 transition-opacity duration-100 ${blink ? "opacity-100" : "opacity-0"}`} />
+      <span className={`ml-0.5 w-[2px] h-[1.2em] bg-purple-400 transition-opacity duration-100 ${blink ? "opacity-100" : "opacity-0"}`} />
     </span>
   );
 };
@@ -92,7 +89,7 @@ const Home = () => {
     hidden: { opacity: 0 },
     visible: { 
       opacity: 1,
-      transition: { staggerChildren: 0.15 } 
+      transition: { staggerChildren: 0.1 } 
     }
   };
 
@@ -107,18 +104,20 @@ const Home = () => {
 
   const highlightedProjects = [
     {
-      title: 'bonabrian.com',
-      description: 'My own digital home on the internet. Built with modern web technologies.',
+      title: 'HalfFried',
+      description: 'A Real-Time Restaurant Management System.',
       color: 'bg-[#A885EE]',
-      tech: ['TypeScript', 'Next.js', 'Tailwind', 'Vercel'],
-      link: '#'
+      tech: ['React', 'Node.js', 'Tailwind', 'Vercel','MongoDB','Firebase'],
+      link: 'https://half-fried.vercel.app/',
+      imageSrc: '/halffried.png'
     },
     {
-      title: 'Yummy Bros',
-      description: 'On-Demand healthy food delivery service. Simplifying meal prep.',
+      title: 'AI CastNotes',
+      description: 'AI-powered tool to generate podcast summaries and transcriptions.',
       color: 'bg-[#B91C1C]',
-      tech: ['Laravel', 'Vue.js', 'MySQL', 'Redis'],
-      link: '#'
+      tech: ['Next.js', 'OpenAI API','Gemini API', 'MongoDB', 'Node.js', 'Vercel'],
+      link: 'https://castnotesai.vercel.app/',
+      imageSrc: '/castnotes.png'
     }
   ];
 
@@ -127,13 +126,13 @@ const Home = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="mt-16 md:mt-24 space-y-32 px-6 md:px-12 lg:px-24 overflow-hidden"
+      className="mt-16 md:mt-24 space-y-32 px-6 md:px-12 lg:px-24"
     >
       
       {/* 1. HERO SECTION */}
       <section className="max-w-4xl">
         <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-2">
-          Hi, I'm <span className="bg-gradient-to-r from-purple-300 via-purple-400 to-indigo-400 text-transparent bg-clip-text">Sugandh Revankar</span>
+          Hi, I'm <span className="bg-purple-400 text-transparent bg-clip-text">Sugandh Revankar</span>
         </motion.h1>
         
         <motion.h2 variants={itemVariants} className="text-5xl md:text-7xl font-bold text-gray-500 tracking-tight leading-[1.1]">
@@ -141,9 +140,9 @@ const Home = () => {
         </motion.h2>
 
         <motion.p variants={itemVariants} className="text-xl text-gray-400 mt-8 mb-10 max-w-2xl leading-relaxed">
-          {/* Explicit spacing using {' '} ensures gaps are perfect */}
           I craft{' '} 
-          <span><TypewriterWord words={["fantastic", "beautiful", "amazing"]} />things with code. I also talk and write about those things.</span>
+          <TypewriterWord words={["fantastic", "beautiful", "amazing"]} /> 
+          {' '}things with code.
         </motion.p>
 
         <motion.div variants={itemVariants}>
@@ -153,35 +152,23 @@ const Home = () => {
           </Link>
         </motion.div>
 
-        {/* --- ANIMATED TECH STACK SECTION --- */}
-        <motion.div variants={itemVariants} className="mt-24">
+        {/* --- STATIC TECH STACK SECTION --- */}
+        <motion.div variants={itemVariants} className="mt-20">
           <p className="text-sm font-bold text-gray-200 mb-8 uppercase tracking-wider">Tech stack</p>
           
-          {/* Mask container to fade edges */}
-          <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-            
-            {/* Moving Container */}
-            <motion.div 
-              className="flex gap-12 w-max"
-              animate={{ x: ["0%", "-50%"] }} 
-              transition={{ 
-                repeat: Infinity, 
-                ease: "linear", 
-                duration: 30 
-              }}
-            >
-              {/* Render items twice to create seamless loop */}
-              {[...techStackIcons, ...techStackIcons].map((item, index) => (
-                <div key={index} className="flex flex-col items-center gap-2 group cursor-default">
+          {/* Replaced scrolling motion.div with a standard flex-wrap container */}
+          <div className="flex flex-wrap gap-8 items-center">
+             {techStackIcons.map((item, index) => (
+                <div key={index} className="flex flex-col items-center gap-2 group cursor-default relative">
                   <item.icon 
-                    className={`w-10 h-10 transition-all duration-300 filter grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 ${item.color}`} 
+                    className={`w-8 h-8 transition-all duration-300 transform hover:-translate-y-1 group-hover:scale-110 ${item.color}`} 
                   />
-                  <span className="text-[10px] text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-4">
+                  {/* Tooltip on Hover */}
+                  <span className="absolute -top-8 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] bg-gray-800 text-white px-2 py-1 rounded whitespace-nowrap pointer-events-none">
                     {item.name}
                   </span>
                 </div>
               ))}
-            </motion.div>
           </div>
         </motion.div>
       </section>
